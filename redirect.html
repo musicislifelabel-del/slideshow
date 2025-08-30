@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Slide Redirect</title>
+</head>
+<body>
+  <p>Redirecting to Slide app…</p>
+  <script>
+    (function() {
+      try {
+        var hash = window.location.hash || "";
+        if (hash.startsWith("#")) { hash = hash.substring(1); }
+        var target = "slide://auth";
+        if (hash.length > 0) { target += "#" + hash; }
+        // Replace current location so back-button doesn't stay on this page
+        window.location.replace(target);
+      } catch (e) {
+        document.body.innerText = "Redirect failed: " + e;
+        console.error(e);
+      }
+    })();
+  </script>
+</body>
+</html>
